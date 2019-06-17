@@ -1,0 +1,18 @@
+language: go
+
+go:
+  - 1.10.2
+  - 1.9.6
+  - 1.8.7
+
+notifications:
+  email: false
+
+before_install:
+  - cp -r $GOROOT/src/cmd/internal $GOROOT/src/cmd/objfile
+  - go get github.com/kr/pretty
+
+script:
+  - go build github.com/dearplain/goloader/examples/loader
+  - go tool compile $GOPATH/src/github.com/dearplain/goloader/examples/base/base.go
+  - ./loader -o base.o -run main.main

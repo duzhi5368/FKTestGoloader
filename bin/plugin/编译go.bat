@@ -1,0 +1,1 @@
+go tool compile request.go
